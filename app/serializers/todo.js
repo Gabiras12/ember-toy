@@ -2,6 +2,12 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
 
+  serialize(snapshot) {
+    return {
+      description: snapshot.attr('description')
+    };
+  },
+
   normalizeResponse(store, primaryModelClass, payload) {
       let normalizedPayload = { data: [] };
 

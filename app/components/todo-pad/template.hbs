@@ -1,3 +1,16 @@
-{{#each todos as |todo|}}
-  <p> {{todo.description}}</p>
-{{/each}}
+<div class="todos-container">
+  <div class="todos-pad">
+    <div class="todo-header">
+      <form {{action "createTodo" on="submit"}}>
+          {{input value=newTodo}}
+      </form>
+    </div>
+    <div class="todo-body">
+      {{#each todos as |todo|}}
+        <p> {{todo.description}}</p>
+      {{else}}
+        <p> Sem nada para fazer </p>
+      {{/each}}
+    </div>
+  </div>
+</div>
