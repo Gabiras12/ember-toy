@@ -4,10 +4,8 @@ export default DS.JSONAPISerializer.extend({
 
   serialize(snapshot) {
     return {
-      todo: {
         description: snapshot.attr('description'),
         done: snapshot.attr('done')
-      }
     };
   },
 

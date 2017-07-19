@@ -12,7 +12,7 @@ export default Ember.Route.extend({
       });
 
       todo.save().then(() => {
-        console.log(recentCreteatedTodo);
+        console.log('saved');
       })
     }
   }
