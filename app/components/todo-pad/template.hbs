@@ -2,15 +2,40 @@
   <div class="todos-pad">
     <div class="todo-header">
       <form {{action "createTodo" on="submit"}}>
-          {{input value=newTodo}}
+          {{input value=newTodo placeholder="O que você precisa fazer?" autofocus=true}}
       </form>
     </div>
     <div class="todo-body">
-      {{#each todos as |todo|}}
-        <p> {{todo.description}}</p>
+      {{#each filtedTodos as |todo|}}
+        <div class="todo-item {{if todo.done 'done'}}">
+          {{input type="checkbox"
+                  name="isAdmin"
+                  checked=todo.done
+                                    }}
+
+            {{#if todo.isEditing}}
+              <form style="width: 100%;" {{action "updateTodo" todo on="submit"}}>
+                {{input class='update-input'
+                        value=todo.description
+                        placeholder="O que você precisa fazer?"
+                        autofocus='true'}}
+              </form>
+            {{else}}
+              <p {{action 'editTodo' todo on='doubleClick'}}>{{todo.description}}</p>
+            {{/if}}
+
+          <button type="button" class="close" aria-label="Close" {{action 'removeTodo' todo}}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       {{else}}
-        <p> Sem nada para fazer </p>
+        <p style="text-align:center;"> Sem nada para fazer </p>
       {{/each}}
     </div>
+  </div>
+  <div class="footer">
+    <button class="btn {{if all 'btn-success'}}" {{action 'filter' 'todos'}}>Todos</button>
+    <button class="btn {{if completed 'btn-success'}}" {{action 'filter' 'completos'}}>Completos</button>
+    <button class="btn {{if imcompleted 'btn-success'}}" {{action 'filter' 'incompletos'}}>Incompletos</button>
   </div>
 </div>

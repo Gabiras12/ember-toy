@@ -11,7 +11,7 @@ export default Ember.Route.extend({
         description: aTodo
       });
 
-      todo.save().then(recentCreteatedTodo => {
+      todo.save().then(() => {
         console.log(recentCreteatedTodo);
       })
     }
